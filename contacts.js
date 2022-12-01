@@ -9,17 +9,17 @@ const listContacts = async () => {
 };
 
 const getContactById = async (contactId) => {
+  const normId = String(contactId);
   const contacts = await listContacts();
-  const result = contacts.find((item) => item.id === contactId);
-  if (!result) {
-    return null;
-  }
-  return result;
+  const result = contacts.find((item) => item.id === normId);
+
+  return result || null;
 };
 
 const removeContact = async (contactId) => {
+  const normId = String(contactId);
   const contacts = await listContacts();
-  const index = contacts.findIndex((item) => item.id === contactId);
+  const index = contacts.findIndex((item) => item.id === normId);
   if (index === -1) {
     return null;
   }
